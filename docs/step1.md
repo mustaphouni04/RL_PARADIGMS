@@ -1,6 +1,6 @@
 ### Questions (Step 1)
 
-1. Describe the preprocessing steps and wrappers applied in your experiment, specifying the resulting observation space.
+**1. Describe the preprocessing steps and wrappers applied in your experiment, specifying the resulting observation space.**
 
 We'll apply a chain of wrappers to the environment to allow for compatibility during training:
 * **FireResetEnv**: It handles cases in the environment that require the "FIRE" action to start the game. It automatically executes the "FIRE" actions (Actions 1 and 2) to start the game when the environment is reset. If the game ends after executing the action, the environment is reset again ensuring the environment is playable.
@@ -32,7 +32,7 @@ All of these wrappers are chained in the following order changing the how the ob
     
     ScaledFloatFrame     : (4, 84, 84) - scale value ranges for training stability
 
-2. Provide a detailed description of the selected agents or models.
+**2. Provide a detailed description of the selected agents or models.**
 
 2. Description of Selected Agents and Models
 For this exercise we selected a standard Deep Q-Network (DQN) as our baseline and compared its performance against three specific extensions: N-Step DQN, Double DQN, and Dueling DQN. 
