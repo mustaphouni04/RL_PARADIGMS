@@ -1,8 +1,8 @@
 [model] # just set one of them as true
-dueling = false 
-double = false 
+dueling = true 
+double = false
 n_step = false     
-basic = true
+basic = false 
 n_step_horizon = 3 
 
 [training]
