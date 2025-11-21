@@ -6,3 +6,11 @@ pip install uv
 
 uv sync
 
+uv run python script.py
+
+uv add package
+
+uv init --> create a new project
+
+
+
