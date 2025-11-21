@@ -1,0 +1,25 @@
+[model] # just set one of them as true
+dueling = false 
+double = false 
+n_step = false     
+basic = true
+n_step_horizon = 3 
+
+[training]
+learning_rate = 1e-4
+batch_size = 32
+gamma = 0.99
+eps_start = 1.0
+eps_decay = 0.999985
+eps_min = 0.02
+number_of_rewards_to_average = 10
+mean_reward_bound = 19.0
+sync_target_network = 1000
+
+[env]
+name = "PongNoFrameskip-v4"
+device = "cpu"
+
+[replay_buffer]
+capacity = 10000
+
