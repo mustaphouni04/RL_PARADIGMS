@@ -57,8 +57,17 @@ These two streams are then aggregated in the final layer to produce the final Q-
 The models are trained and the results are shown in the following exercises.
 
 **4. Save the best-performing models and produce visualizations of their behavior.**
-The best performing models are saved on the folder ```shell 
-checkpoints/```, you can find some visualizations of the training logs here:
+The best performing models are saved on the folder ```
+checkpoints/```, you can find some visualizations of the training logs and agents playing in ```
+docs/plots/rewards_vs_frames/``` and ```docs/plots/matches/``` respectively. 
+
+**5. Evaluate the trained models within the environment, reporting the average success rate.** 
+The models on average perform really well. The basic, double and dueling DQN achieve a max and average reward of 21 across 10 episodes (though it seems there's no variance within episodes because of the deterministic nature of the environment). Theonly exception is on the 3-step DQN which ends up having an average reward of 11, compromising performance for speed of convergence. It's important to clarify that this does not necessarily mean the 3-step DQN is worse, in fact, if you look at the movements made by the agent, it seems it does not take the same looped action over and over again (it hasn't overfitted to a glitch or bug by the opponent's way of playing) which is great. The other agents seem to memorize the same action each time.
+
+**6. Discuss the obtained results, analyze the findings, and justify the selection of the best model for this environment.**
+TBD
+
+
 
 
 
