@@ -1,0 +1,32 @@
+{
+  "os": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "python": "CPython 3.11.14",
+  "startedAt": "2025-11-28T16:58:07.582374Z",
+  "program": "/home/mustapha/RL/RL_PARADIGMS/src/sb3_pong.py",
+  "codePath": "src/sb3_pong.py",
+  "git": {
+    "remote": "https://github.com/mustaphouni04/RL_PARADIGMS.git",
+    "commit": "ef03068c683f9fe964c72d2518c3b147b488f1e8"
+  },
+  "email": "elaichounimustapha@gmail.com",
+  "root": "/home/mustapha/RL/RL_PARADIGMS/src",
+  "host": "LAPTOP-S8VKABPC",
+  "username": "mustapha",
+  "executable": "/home/mustapha/RL/RL_PARADIGMS/.venv/bin/python3",
+  "codePathLocal": "sb3_pong.py",
+  "cpu_count": 4,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "1081101176832",
+      "used": "129845923840"
+    }
+  },
+  "memory": {
+    "total": "8222953472"
+  },
+  "cpu": {
+    "count": 4,
+    "countLogical": 8
+  }
+}

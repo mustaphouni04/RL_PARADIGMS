@@ -1,0 +1,8 @@
+[env]
+policy_type="CnnPolicy"
+total_timesteps=1000000
+env_name="Pong-V3"
+export_path: "./exports/"
+models = ["a2c", "ppo", "reinforce"]
+
+

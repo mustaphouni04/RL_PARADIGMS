@@ -26,8 +26,9 @@ net.eval()
 episode_rewards = []
 wins = 0
 
+seed = 0
 for ep in range(num_episodes):
-    state, info = env.reset()
+    state, info = env.reset(seed=seed)
     total_reward = 0.0
     images = []
 
@@ -55,6 +56,7 @@ for ep in range(num_episodes):
 
     if visualize and ep == 0 and images:
         images[0].save("video_double.gif", save_all=True, append_images=images[1:], duration=60, loop=0)
+    seed += 1
 
 
 avg_reward = np.mean(episode_rewards)
