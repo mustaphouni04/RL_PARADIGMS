@@ -1,102 +1,113 @@
 import wandb
-import numpy as np 
-import supersuit as ss 
-from pettingzoo.atari import pong_v3
-from datetime import datetime
-import toml
-import gymnasium as gym 
-from stable_baselines3.common.monitor import Monitor
-from stable_baselines3.common.vec_env import DummyVecEnv, VecMonitor, VecTransposeImage
-from stable_baselines3 import A2C, PPO
-from stable_baselines3.ppo.policies import MlpPolicy
-from stable_baselines3.common.callbacks import BaseCallback, EvalCallback, StopTrainingOnRewardThreshold, CallbackList
+import gymnasium as gym
+from stable_baselines3 import PPO
+import numpy as np
+from stable_baselines3.common.vec_env import DummyVecEnv, VecMonitor, VecVideoRecorder
+from stable_baselines3.common.callbacks import BaseCallback 
+from utils.utils import make_env
 from wandb.integration.sb3 import WandbCallback
+import os
+from ale_py import ALEInterface
+import ale_py
 
-class SeparateAgentLogger(BaseCallback):
-    def __init__(self, verbose=0):
-        super(SeparateAgentLogger, self).__init__(verbose)
+ale = ALEInterface()
+gym.register_envs(ale_py)
+
+# --- CONFIGURATION ---
+CONFIG = {
+    "project_name": "Step2-RLProject",
+    "env_id": "PongNoFrameskip-v4", 
+    "total_timesteps": 10_000_000,
+    "model_name": "ppo_pong_costum_settings",
+    "export_path": "./models/",
+    "learning_rate": 2.5e-4,
+    "gamma": 0.99,
+    "batch_size": 256,
+    "n_steps": 128,
+    "mean_reward_bound": 19.0,
+    "reward_window": 10
+}
+
+class StopOnRewardCallback(BaseCallback):
+    def __init__(self, reward_threshold: float, verbose: int = 1):
+        super().__init__(verbose)
+        self.reward_threshold = reward_threshold
 
     def _on_step(self) -> bool:
-        dones = self.locals['dones']
-        infos = self.locals['infos']
-
-        for idx, info in enumerate(infos):
-            if 'episode' in info:
-                reward = info['episode']['r']
-                length = info['episode']['l']
-                
-                agent_name = "Right_Paddle" if idx == 0 else "Left_Paddle"
-                
-                wandb.log({
-                    f"{agent_name}/reward": reward,
-                    f"{agent_name}/ep_length": length,
-                    "global_step": self.num_timesteps
-                })
+        ep_info_buffer = self.model.ep_info_buffer
+        
+        if len(ep_info_buffer) > 0:
+            mean_reward = np.mean([ep_info["r"] for ep_info in ep_info_buffer])
+            
+            if mean_reward >= self.reward_threshold:
+                if self.verbose > 0:
+                    print(f"\nSOLVED! Mean reward {mean_reward:.2f} >= {self.reward_threshold}")
+                    print(f"Stopping training at step {self.num_timesteps}")
+                return False # Returning False stops the training
+        
         return True
 
-print("Using Gymnasium version {}".format(gym.__version__))
-
-def make_env(render_mode="rgb_array"):
-    env = pong_v3.parallel_env(num_players=2, render_mode=render_mode)
-
-    env = ss.color_reduction_v0(env, mode="B")
-    env = ss.resize_v1(env, x_size=84, y_size=84)
-    env = ss.frame_stack_v1(env, 4)
-    #env = ss.dtype_v0(env, dtype=np.float32)
-    #env = ss.normalize_obs_v0(env, env_min=0, env_max=1)
-
-    env = ss.pettingzoo_env_to_vec_env_v1(env)
-    env = ss.concat_vec_envs_v1(env, 1, num_cpus=0, base_class='stable_baselines3')
-
-    env = VecTransposeImage(env)
-    env = VecMonitor(env)
-
-    return env
-try:
-    config = toml.load("../configs/sb3_config.toml")
-except toml.decoder.TomlDecodeError:
-    config = {"env": {"policy_type": "CnnPolicy", "total_timesteps": 2000000, "export_path": "./models/"}}
-
-def train_model(env, model_name, config):
+def train_model():
     run = wandb.init(
-        project="Step2-RLProject",
-        config=config,
-        name = model_name,
-        sync_tensorboard=True, 
-        save_code=True,       
-        monitor_gym=True
+        project=CONFIG["project_name"],
+        config=CONFIG,
+        name=CONFIG["model_name"],
+        sync_tensorboard=True,
+        monitor_gym=False,
+        save_code=True
     )
 
-    print("\n>>> Creating and training model '{}'...".format(model_name))
-
-    tensorboard_log = f"runs/{run.id}"
-    if model_name == "a2c":
-        model = A2C(config["env"]["policy_type"], env, verbose=0, tensorboard_log=tensorboard_log)
-    elif model_name == "ppo":
-        model = PPO(config["env"]["policy_type"], env, verbose=0, tensorboard_log=tensorboard_log)
-    else:
-        print("Error, unknown model ({})".format(model_name))
-        return None
+    env = DummyVecEnv([lambda: make_env(CONFIG["env_id"], render_mode="rgb_array")])
     
+    env = VecMonitor(env)
+    print(f"\n>>> Training Agent (Right Paddle) vs Atari AI (Left Paddle)...")
+
+    video_folder = f"runs/{run.id}/videos"
+    os.makedirs(video_folder, exist_ok=True)
+    
+    env = VecVideoRecorder(
+        env,
+        video_folder=video_folder,
+        record_video_trigger=lambda x: x % 100_000 == 0,
+        video_length=2000,
+        name_prefix=CONFIG["model_name"]
+    )
+
+    
+    model = PPO(
+        "CnnPolicy", 
+        env, 
+        verbose=1, 
+        tensorboard_log=f"runs/{run.id}", 
+        device="cuda",
+        learning_rate=CONFIG["learning_rate"],
+        gamma=CONFIG["gamma"],
+        n_steps=CONFIG["n_steps"],
+        batch_size=CONFIG["batch_size"],
+        n_epochs=4,
+        ent_coef=0.01,
+        clip_range=0.1,
+        policy_kwargs={"normalize_images": False}
+    )
+    
+    stop_callback = StopOnRewardCallback(reward_threshold=CONFIG["mean_reward_bound"])
     wandb_callback = WandbCallback(verbose=2)
     
-    agent_logger = SeparateAgentLogger()
-    
-    callback_list = CallbackList([wandb_callback, agent_logger])
+    model.learn(
+        total_timesteps=CONFIG["total_timesteps"], 
+        callback=[wandb_callback, stop_callback]
+    )
 
-    t0 = datetime.now()
-    
-    model.learn(total_timesteps=config["env"]["total_timesteps"], callback=callback_list)
-    
-    t1 = datetime.now()
-    print(f'>>> Training time: {t1-t0}')
-
-    save_path = f"{config['env']['export_path']}{model_name}"
+    os.makedirs(CONFIG["export_path"], exist_ok=True)
+    save_path = f"{CONFIG['export_path']}{CONFIG['model_name']}"
     model.save(save_path)
     print(f"Model exported at '{save_path}'")
-    
+
+    env.close()
+
+    wandb.log({"video": wandb.Video(os.path.join(video_folder, f"{CONFIG['model_name']}-step-0-to-step-2000.mp4"), fps=30, format="mp4")})
+
     run.finish()
 
 if __name__ == "__main__":
-    env = make_env()
-    train_model(env, "ppo", config)
+    train_model()

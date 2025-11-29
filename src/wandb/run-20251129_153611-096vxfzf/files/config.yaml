@@ -1,0 +1,37 @@
+_wandb:
+    value:
+        cli_version: 0.19.0
+        code_path: code/src/sb3_pong.py
+        m: []
+        python_version: 3.11.14
+        t:
+            "1":
+                - 1
+                - 55
+                - 105
+            "2":
+                - 1
+                - 55
+                - 105
+            "3":
+                - 13
+                - 16
+                - 23
+                - 35
+                - 55
+            "4": 3.11.14
+            "5": 0.19.0
+            "8":
+                - 5
+            "12": 0.19.0
+            "13": linux-x86_64
+env_id:
+    value: PongNoFrameskip-v4
+export_path:
+    value: ./models/
+model_name:
+    value: ppo_pong_standard
+project_name:
+    value: Step2-RLProject
+total_timesteps:
+    value: 1000000

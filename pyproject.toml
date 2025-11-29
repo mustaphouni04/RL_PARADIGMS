@@ -102,7 +102,7 @@ dependencies = [
     "six==1.17.0",
     "smmap==5.0.1",
     "SQLAlchemy==2.0.36",
-    "stable_baselines3==2.4.0",
+    "stable-baselines3==2.4.0",
     "SuperSuit==3.9.3",
     "swig==4.3.0",
     "sympy==1.13.3",
@@ -123,4 +123,6 @@ dependencies = [
     "Werkzeug==3.0.6",
     "zipp==3.20.2",
     "toml>=0.10.2",
+    "torchrl>=0.9.2",
+    "tensordict>=0.9.0",
 ]
