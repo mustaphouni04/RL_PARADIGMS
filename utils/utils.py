@@ -113,6 +113,11 @@ class ScaledFloatFrame(gym.ObservationWrapper):
     def observation(self, obs):
         return np.array(obs).astype(np.float32) / 255.0
 
+class HorizontalFlip(gym.ObservationWrapper):
+    def observation(self, obs):
+        # at last dim
+        return np.flip(obs, 2)
+
 
 def make_env(env_name, render_mode=None):
     env = gym.make(env_name, render_mode=render_mode)
@@ -129,6 +134,8 @@ def make_env(env_name, render_mode=None):
     print("BufferWrapper        : {}".format(env.observation_space.shape))
     env = ScaledFloatFrame(env)
     print("ScaledFloatFrame     : {}".format(env.observation_space.shape))
+    env = HorizontalFlip(env)
+    print("HorizontalFlip     : {}".format(env.observation_space.shape))
 
     return env
 

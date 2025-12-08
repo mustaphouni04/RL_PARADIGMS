@@ -1,0 +1,116 @@
+diff --git a/src/sb3_pong.py b/src/sb3_pong.py
+index 81fb665..186ab2f 100644
+--- a/src/sb3_pong.py
++++ b/src/sb3_pong.py
+@@ -1,11 +1,12 @@
+ import wandb
+ import gymnasium as gym
+-from stable_baselines3 import PPO
++from stable_baselines3 import PPO, A2C
+ import numpy as np
+ from stable_baselines3.common.vec_env import DummyVecEnv, VecMonitor, VecVideoRecorder
+ from stable_baselines3.common.callbacks import BaseCallback 
+ from utils.utils import make_env
+ from wandb.integration.sb3 import WandbCallback
++from stable_baselines3.common.vec_env import SubprocVecEnv
+ import os
+ from ale_py import ALEInterface
+ import ale_py
+@@ -18,12 +19,12 @@ CONFIG = {
+     "project_name": "Step2-RLProject",
+     "env_id": "PongNoFrameskip-v4", 
+     "total_timesteps": 10_000_000,
+-    "model_name": "ppo_pong_costum_settings",
++    "model_name": "a2c_pong_costum_settings_left",
+     "export_path": "./models/",
+     "learning_rate": 2.5e-4,
+     "gamma": 0.99,
+     "batch_size": 256,
+-    "n_steps": 128,
++    "n_steps": 64, # 128
+     "mean_reward_bound": 19.0,
+     "reward_window": 10
+ }
+@@ -43,7 +44,7 @@ class StopOnRewardCallback(BaseCallback):
+                 if self.verbose > 0:
+                     print(f"\nSOLVED! Mean reward {mean_reward:.2f} >= {self.reward_threshold}")
+                     print(f"Stopping training at step {self.num_timesteps}")
+-                return False # Returning False stops the training
++                return False 
+         
+         return True
+ 
+@@ -57,10 +58,14 @@ def train_model():
+         save_code=True
+     )
+ 
+-    env = DummyVecEnv([lambda: make_env(CONFIG["env_id"], render_mode="rgb_array")])
++    n_envs = 4
++
++    # DummyVecEnv 
++    env = SubprocVecEnv([lambda: make_env(CONFIG["env_id"], render_mode="rgb_array")
++                      for _ in range(n_envs)])
+     
+     env = VecMonitor(env)
+-    print(f"\n>>> Training Agent (Right Paddle) vs Atari AI (Left Paddle)...")
++    print(f"\n>>> Training Agent (Left Paddle) vs Atari AI (Right Paddle)...")
+ 
+     video_folder = f"runs/{run.id}/videos"
+     os.makedirs(video_folder, exist_ok=True)
+@@ -74,7 +79,7 @@ def train_model():
+     )
+ 
+     
+-    model = PPO(
++    model = A2C(
+         "CnnPolicy", 
+         env, 
+         verbose=1, 
+@@ -83,10 +88,10 @@ def train_model():
+         learning_rate=CONFIG["learning_rate"],
+         gamma=CONFIG["gamma"],
+         n_steps=CONFIG["n_steps"],
+-        batch_size=CONFIG["batch_size"],
+-        n_epochs=4,
++        #batch_size=CONFIG["batch_size"], # parameter specific to PPO
++        #n_epochs=4, # parameter specific to PPO
+         ent_coef=0.01,
+-        clip_range=0.1,
++        #clip_range=0.1, parameter specific to PPO
+         policy_kwargs={"normalize_images": False}
+     )
+     
+diff --git a/utils/utils.py b/utils/utils.py
+index 3467ed0..d27570e 100644
+--- a/utils/utils.py
++++ b/utils/utils.py
+@@ -113,6 +113,11 @@ class ScaledFloatFrame(gym.ObservationWrapper):
+     def observation(self, obs):
+         return np.array(obs).astype(np.float32) / 255.0
+ 
++class HorizontalFlip(gym.ObservationWrapper):
++    def observation(self, obs):
++        # at last dim
++        return np.flip(obs, 2)
++
+ 
+ def make_env(env_name, render_mode=None):
+     env = gym.make(env_name, render_mode=render_mode)
+@@ -129,6 +134,8 @@ def make_env(env_name, render_mode=None):
+     print("BufferWrapper        : {}".format(env.observation_space.shape))
+     env = ScaledFloatFrame(env)
+     print("ScaledFloatFrame     : {}".format(env.observation_space.shape))
++    env = HorizontalFlip(env)
++    print("HorizontalFlip     : {}".format(env.observation_space.shape))
+ 
+     return env
+ 
+diff --git a/wandb/latest-run b/wandb/latest-run
+index 5f94dd9..90b7cc2 120000
+--- a/wandb/latest-run
++++ b/wandb/latest-run
+@@ -1 +1 @@
+-run-20251129_192641-9rvehip8
+\ No newline at end of file
++run-20251130_145413-1ojsksgl
+\ No newline at end of file
