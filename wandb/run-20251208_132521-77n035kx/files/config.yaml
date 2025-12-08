@@ -1,0 +1,46 @@
+_wandb:
+    value:
+        cli_version: 0.19.0
+        m: []
+        python_version: 3.11.14
+        t:
+            "1":
+                - 1
+                - 55
+                - 105
+            "2":
+                - 1
+                - 55
+                - 105
+            "3":
+                - 13
+                - 16
+                - 23
+                - 35
+                - 55
+            "4": 3.11.14
+            "5": 0.19.0
+            "8":
+                - 5
+            "12": 0.19.0
+            "13": linux-x86_64
+env_id:
+    value: pong_v3
+export_path:
+    value: ./models/
+gamma:
+    value: 0.99
+learning_rate:
+    value: 0.00025
+mean_reward_bound:
+    value: 19
+model_name:
+    value: a2c_pong_marl_selfplay
+n_steps:
+    value: 64
+num_envs:
+    value: 8
+project_name:
+    value: Step2-RLProject-MARL
+total_timesteps:
+    value: 10000000
