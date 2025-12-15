@@ -1,0 +1,12 @@
+gymnasium[atari,accept-rom-license]==1.0.0
+ale-py==0.10.1
+stable-baselines3==2.2.0
+torch==2.2.0
+opencv-python==4.9.0.80
+numpy
+pandas
+matplotlib
+imageio==2.33.1
+tensorboard
+wandb
+optuna

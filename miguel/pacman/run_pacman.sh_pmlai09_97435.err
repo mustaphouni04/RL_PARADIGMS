@@ -1,0 +1,64 @@
+wandb: Currently logged in as: miguelarpaa (miguelarpaa-universitat-aut-noma-de-barcelona) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: setting up run hu81yf6t
+wandb: Tracking run with wandb version 0.23.0
+wandb: Run data is saved locally in /export/fhome/pmlai09/miguel/env/pacman/wandb/run-20251214_171321-hu81yf6t
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ppo_final_train
+wandb: ⭐️ View project at https://wandb.ai/miguelarpaa-universitat-aut-noma-de-barcelona/pacman-rl
+wandb: 🚀 View run at https://wandb.ai/miguelarpaa-universitat-aut-noma-de-barcelona/pacman-rl/runs/hu81yf6t
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+/export/fhome/pmlai09/miguel/env/lib/python3.8/site-packages/gymnasium/core.py:311: UserWarning: [33mWARN: env.seed to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.seed` for environment variables or `env.get_wrapper_attr('seed')` that will search the reminding wrappers.[0m
+  logger.warn(
+wandb: updating run metadata
+wandb: uploading wandb-summary.json; uploading output.log; uploading config.yaml; uploading results/logs/PPO_7/events.out.tfevents.1765728812.etse-75-51.3036319.0
+wandb: uploading output.log; uploading results/logs/PPO_7/events.out.tfevents.1765728812.etse-75-51.3036319.0
+wandb: uploading history steps 34207-34207, summary, console lines 51659-51659
+wandb: 
+wandb: Run history:
+wandb: eval/mean_ep_length ▁▁▁▂▃▃▃▄▄▃▄▅▅▅▄▅▅▄▄▆▅▅▅▆▅▇▆▆▆██▆▆▇▆▆▆▆▆▆
+wandb:    eval/mean_reward ▁▁▁▁▂▄▂▄▂▃▃▃▅▆▆▅▅▅▇▇▇▄▅█▃▅▅▅▅▆▄▇▆▇▅▆▇▆▆▆
+wandb:   final/mean_reward ▁
+wandb:    final/std_reward ▁
+wandb:         global_step ▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▃▃▃▃▄▄▄▄▄▅▅▅▆▆▆▆▆▆▇▇▇███
+wandb: rollout/ep_len_mean ▄▁▁▇▄▃▃▃▃▃▃▃▄▄▄▄▄▄▄▄▄▄▅▆▆▆▆▆▆▅▆▆▆▆▆▆▆▆▆█
+wandb: rollout/ep_rew_mean ▁▁▂▂▂▂▃▃▄▅▆▇▆▇▇▇▇▇▇▇▇▇▇▇▇█▇▇██▇██████▇▇█
+wandb:            time/fps █▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:     train/approx_kl ▃▂▁▁▃▃▂▂▂▂▂▃▃▂▃▃▃▄▃▃▅▄▄▄▄▅▃▆▆▅▄▅▄▇▄▅▄▄▇█
+wandb: train/clip_fraction ▂▁▅▃▁▅▆▄▅▄▄▄▄▄▄▅▅▅▅▆▆▆▅▅▄▇▆▇▇▇▆▇▇▆▇█▆▇▇▇
+wandb:                 +10 ...
+wandb: 
+wandb: Run summary:
+wandb: eval/mean_ep_length 1270
+wandb:    eval/mean_reward 444
+wandb:   final/mean_reward 834
+wandb:    final/std_reward 0
+wandb:         global_step 20004864
+wandb: rollout/ep_len_mean 1454.64
+wandb: rollout/ep_rew_mean 166.68
+wandb:            time/fps 221
+wandb:     train/approx_kl 0.01887
+wandb: train/clip_fraction 0.07086
+wandb:                 +10 ...
+wandb: 
+wandb: 🚀 View run ppo_final_train at: https://wandb.ai/miguelarpaa-universitat-aut-noma-de-barcelona/pacman-rl/runs/hu81yf6t
+wandb: ⭐️ View project at: https://wandb.ai/miguelarpaa-universitat-aut-noma-de-barcelona/pacman-rl
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 1 other file(s)
+wandb: Find logs at: ./wandb/run-20251214_171321-hu81yf6t/logs
+/export/fhome/pmlai09/miguel/env/lib/python3.8/site-packages/gymnasium/core.py:311: UserWarning: [33mWARN: env.seed to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.seed` for environment variables or `env.get_wrapper_attr('seed')` that will search the reminding wrappers.[0m
+  logger.warn(
+/export/fhome/pmlai09/miguel/env/lib/python3.8/site-packages/gymnasium/core.py:311: UserWarning: [33mWARN: env.seed to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.seed` for environment variables or `env.get_wrapper_attr('seed')` that will search the reminding wrappers.[0m
+  logger.warn(
+/export/fhome/pmlai09/miguel/env/lib/python3.8/site-packages/gymnasium/core.py:311: UserWarning: [33mWARN: env.seed to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.seed` for environment variables or `env.get_wrapper_attr('seed')` that will search the reminding wrappers.[0m
+  logger.warn(
+/export/fhome/pmlai09/miguel/env/lib/python3.8/site-packages/gymnasium/core.py:311: UserWarning: [33mWARN: env.seed to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.seed` for environment variables or `env.get_wrapper_attr('seed')` that will search the reminding wrappers.[0m
+  logger.warn(

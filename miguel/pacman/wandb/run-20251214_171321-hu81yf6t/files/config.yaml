@@ -1,0 +1,116 @@
+_wandb:
+    value:
+        cli_version: 0.23.0
+        e:
+            b2qqlqeqk7h2en77pu36ykctwipyszvh:
+                args:
+                    - --algo
+                    - ppo
+                    - --final-train
+                cpu_count: 32
+                cpu_count_logical: 64
+                cudaVersion: "12.4"
+                disk:
+                    /:
+                        total: "884720001024"
+                        used: "127523565568"
+                email: miguelpitufet@gmail.com
+                executable: /export/fhome/pmlai09/miguel/env/bin/python
+                gpu: NVIDIA TITAN Xp
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Pascal
+                      cudaCores: 3840
+                      memoryTotal: "12884901888"
+                      name: NVIDIA TITAN Xp
+                      uuid: GPU-93a60f0a-a347-7e89-e807-7ca7fe19db18
+                host: etse-75-51
+                memory:
+                    total: "270325645312"
+                os: Linux-5.15.0-88-generic-x86_64-with-glibc2.29
+                program: /fhome/pmlai09/miguel/env/pacman/train.py
+                python: CPython 3.8.10
+                root: /export/fhome/pmlai09/miguel/env/pacman
+                slurm:
+                    cluster_name: dcccvc
+                    conf: /var/spool/slurmd/conf-cache/slurm.conf
+                    cpus_on_node: "4"
+                    gpus_on_node: "1"
+                    gtids: "0"
+                    job_account: atfg
+                    job_cpus_per_node: "4"
+                    job_gid: "12709"
+                    job_gpus: "3"
+                    job_id: "97435"
+                    job_name: run_pacman.sh
+                    job_nodelist: etse-75-51
+                    job_num_nodes: "1"
+                    job_partition: tfg
+                    job_qos: tfgq
+                    job_uid: "12709"
+                    job_user: pmlai09
+                    jobid: "97435"
+                    localid: "0"
+                    mem_per_node: "8192"
+                    nnodes: "1"
+                    node_aliases: (null)
+                    nodeid: "0"
+                    nodelist: etse-75-51
+                    nprocs: "4"
+                    ntasks: "4"
+                    prio_process: "0"
+                    procid: "0"
+                    submit_dir: /export/fhome/pmlai09/miguel/env/pacman
+                    submit_host: etse-75-51
+                    task_pid: "3036129"
+                    tasks_per_node: "4"
+                    topology_addr: etse-75-51
+                    topology_addr_pattern: node
+                    working_cluster: dcccvc:dcc3090:6817:9472:109
+                startedAt: "2025-12-14T16:13:21.210167Z"
+                writerId: b2qqlqeqk7h2en77pu36ykctwipyszvh
+        m: []
+        python_version: 3.8.10
+        t:
+            "1":
+                - 1
+                - 35
+            "2":
+                - 1
+                - 35
+            "3":
+                - 2
+                - 13
+                - 16
+                - 35
+            "4": 3.8.10
+            "5": 0.23.0
+            "10":
+                - 20
+            "12": 0.23.0
+            "13": linux-x86_64
+batch_size:
+    value: 128
+clip_range:
+    value: 0.29
+ent_coef:
+    value: 0.000127
+gae_lambda:
+    value: 0.9222
+gamma:
+    value: 0.9867
+learning_rate:
+    value: 2.08e-05
+max_grad_norm:
+    value: 0.82
+n_epochs:
+    value: 10
+n_steps:
+    value: 2048
+normalize_advantage:
+    value: true
+policy_kwargs:
+    value:
+        normalize_images: true
+vf_coef:
+    value: 0.88

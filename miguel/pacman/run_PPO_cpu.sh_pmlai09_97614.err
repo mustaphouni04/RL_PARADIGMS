@@ -1,0 +1,20 @@
+wandb: Currently logged in as: miguelarpaa (miguelarpaa-universitat-aut-noma-de-barcelona) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: setting up run rjlxr9sf
+wandb: Tracking run with wandb version 0.23.0
+wandb: Run data is saved locally in /export/fhome/pmlai09/miguel/env/pacman/wandb/run-20251215_012826-rjlxr9sf
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run a2c_final_train
+wandb: ⭐️ View project at https://wandb.ai/miguelarpaa-universitat-aut-noma-de-barcelona/pacman-rl
+wandb: 🚀 View run at https://wandb.ai/miguelarpaa-universitat-aut-noma-de-barcelona/pacman-rl/runs/rjlxr9sf
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+A.L.E: Arcade Learning Environment (version 0.8.1+53f58b7)
+[Powered by Stella]
+slurmstepd: error: *** JOB 97614 ON etse-75-51 CANCELLED AT 2025-12-15T22:11:50 ***

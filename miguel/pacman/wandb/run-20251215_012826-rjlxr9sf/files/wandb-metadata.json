@@ -1,0 +1,62 @@
+{
+  "os": "Linux-5.15.0-88-generic-x86_64-with-glibc2.29",
+  "python": "CPython 3.8.10",
+  "startedAt": "2025-12-15T00:28:26.698624Z",
+  "args": [
+    "--algo",
+    "a2c",
+    "--final-train"
+  ],
+  "program": "/fhome/pmlai09/miguel/env/pacman/train.py",
+  "email": "miguelpitufet@gmail.com",
+  "root": "/export/fhome/pmlai09/miguel/env/pacman",
+  "host": "etse-75-51",
+  "executable": "/export/fhome/pmlai09/miguel/env/bin/python",
+  "cpu_count": 32,
+  "cpu_count_logical": 64,
+  "disk": {
+    "/": {
+      "total": "884720001024",
+      "used": "127526031360"
+    }
+  },
+  "memory": {
+    "total": "270325645312"
+  },
+  "slurm": {
+    "cluster_name": "dcccvc",
+    "conf": "/var/spool/slurmd/conf-cache/slurm.conf",
+    "cpus_on_node": "4",
+    "gtids": "0",
+    "job_account": "atfg",
+    "job_cpus_per_node": "4",
+    "job_gid": "12709",
+    "job_id": "97614",
+    "job_name": "run_PPO_cpu.sh",
+    "job_nodelist": "etse-75-51",
+    "job_num_nodes": "1",
+    "job_partition": "tfg",
+    "job_qos": "tfgq",
+    "job_uid": "12709",
+    "job_user": "pmlai09",
+    "jobid": "97614",
+    "localid": "0",
+    "mem_per_node": "8192",
+    "nnodes": "1",
+    "node_aliases": "(null)",
+    "nodeid": "0",
+    "nodelist": "etse-75-51",
+    "nprocs": "4",
+    "ntasks": "4",
+    "prio_process": "0",
+    "procid": "0",
+    "submit_dir": "/export/fhome/pmlai09/miguel/env/pacman",
+    "submit_host": "etse-75-51",
+    "task_pid": "62599",
+    "tasks_per_node": "4",
+    "topology_addr": "etse-75-51",
+    "topology_addr_pattern": "node",
+    "working_cluster": "dcccvc:dcc3090:6817:9472:109"
+  },
+  "writerId": "ww24xvfnrztzekqhdjsq6gql8d7wktpm"
+}
