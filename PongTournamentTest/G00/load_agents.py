@@ -35,10 +35,10 @@ def load_left_agent():
     # Import the custom policy definition if it's in a separate file, 
     # or ensure it is available in the scope.
                     
-    model = A2C.load(os.path.join(os.path.dirname(__file__), "left_specialist_4200000_steps.zip"),
+    model = A2C.load(os.path.join(os.path.dirname(__file__), "caca.zip"),
                 custom_objects={'policy_class': SymmetricActorCriticPolicy})
                             
-    model.policy.force_flip = True
+    model.force_flip = False
                                                 
     return model
 
