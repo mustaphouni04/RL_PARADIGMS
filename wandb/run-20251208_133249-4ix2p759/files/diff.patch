@@ -1,9 +1,0 @@
-diff --git a/wandb/latest-run b/wandb/latest-run
-index 90b7cc2..fabdf0b 120000
---- a/wandb/latest-run
-+++ b/wandb/latest-run
-@@ -1 +1 @@
--run-20251130_145413-1ojsksgl
-\ No newline at end of file
-+run-20251208_133249-4ix2p759
-\ No newline at end of file

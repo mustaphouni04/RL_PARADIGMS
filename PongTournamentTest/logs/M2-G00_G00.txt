@@ -1,0 +1,6 @@
+2025-12-15 15:09:31,610 INFO >>> MATCH 2 / 5
+2025-12-15 15:09:47,001 INFO Episode terminated after 9024 frames!
+2025-12-15 15:09:47,001 INFO >>> Rewards:
+2025-12-15 15:09:47,001 INFO     Player LEFT : G00 -> -20 points
+2025-12-15 15:09:47,001 INFO     Player RIGHT: G00 -> 20 points
+2025-12-15 15:09:47,001 INFO     ...and the WINNER is group G00!

@@ -45,6 +45,63 @@ def make_marl_env(num_envs):
 
     return env
 
+def resume_training():
+    run = wandb.init(
+        project=CONFIG["project_name"],
+        config=CONFIG,
+        name=CONFIG["model_name"] + "_continued",
+        sync_tensorboard=True,
+        monitor_gym=False,
+        save_code=True
+    )
+
+    env = make_marl_env(CONFIG["num_envs"])
+    env.render_mode = "rgb_array"
+    env = VecMonitor(env)
+    env.render_mode = "rgb_array"
+
+    video_folder = f"runs/{run.id}/videos"
+    os.makedirs(video_folder, exist_ok=True)
+
+    
+    env = VecVideoRecorder(
+        env,
+        video_folder=video_folder,
+        record_video_trigger=lambda x: x % 100 == 0,
+        video_length=2000,
+        name_prefix=CONFIG["model_name"]
+    )
+
+    model_path = f"{CONFIG['export_path']}{CONFIG['model_name']}_final"
+
+    print(f"Loading model from: {model_path}")
+
+    model = A2C.load(model_path,
+                     env=env,
+                     tensorboard_log=f"runs/{run.id}")
+
+
+    print(f"\n>>> Resuming training from step {model.num_timesteps}...")
+
+    wandb_callback = WandbCallback(verbose=2)
+
+    checkpoint_callback = CheckpointCallback(
+        save_freq=500_000,
+        save_path=CONFIG["export_path"],
+        name_prefix=CONFIG["model_name"] + "_ckpt"
+    )
+
+    model.learn(
+            total_timesteps=10_000_000,
+            callback=[wandb_callback, checkpoint_callback],
+            reset_num_timesteps=False)
+
+    save_path = f"{CONFIG['export_path']}{CONFIG['model_name']}_continued"
+    model.save(save_path)
+
+    env.close()
+    run.finish()
+
 
 def train_model():
     run = wandb.init(
@@ -122,4 +179,4 @@ def train_model():
     run.finish()
 
 if __name__ == "__main__":
-    train_model()
+    resume_training()

@@ -1,1 +1,0 @@
-{"train/entropy_loss":-1.7908735,"_wandb":{"runtime":74},"_runtime":65.649271586,"time/fps":1336,"train/policy_loss":0.002199558,"train/learning_rate":0.00025,"global_step":76800,"train/explained_variance":-0.5906247,"train/value_loss":3.88291e-05,"_timestamp":1.7651983073628592e+09,"_step":5}
