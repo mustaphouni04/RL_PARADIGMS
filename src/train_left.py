@@ -16,13 +16,13 @@ CONFIG = {
     "project_name": "Step2-RLProject-MARL",
     "env_id": "pong_v3",
     "total_timesteps": 10_000_000,
-    "model_name": "left_specialist", # Changed name to avoid overwriting self-play model
-    "opponent_path": "./models/oldv2/a2c_pong_marl_selfplay_continuedv2", # Path to the FROZEN model
+    "model_name": "left_specialist", 
+    "opponent_path": "./models/specialists/old/left_specialist_4800000_steps", 
     "export_path": "./models/specialists/",
     "learning_rate": 2.5e-4,
     "gamma": 0.99,
     "n_steps": 32,
-    "num_envs": 6, # Increased slightly for speed, adjust based on CPU cores
+    "num_envs": 6, 
 }
 
 class SymmetricActorCriticPolicy(ActorCriticCnnPolicy):
@@ -43,7 +43,6 @@ class LeftSpecialistVecWrapper(VecEnvWrapper):
     - Only exposes Left Agents (indices 1, 3, 5...) to the Trainer.
     """
     def __init__(self, venv, opponent_model):
-        # We assume the env structure is [Right0, Left0, Right1, Left1, ...]
         self.total_envs = venv.num_envs
         self.num_learners = self.total_envs // 2
         
@@ -55,7 +54,6 @@ class LeftSpecialistVecWrapper(VecEnvWrapper):
         # We pass the observation/action space of the underlying venv (which is correct for single agents)
         super().__init__(venv, venv.observation_space, venv.action_space)
         
-        # --- CRITICAL FIX ---
         # We must overwrite num_envs so SB3 knows we are only exposing half the agents
         self.num_envs = self.num_learners 
         
