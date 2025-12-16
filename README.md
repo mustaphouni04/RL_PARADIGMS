@@ -16,7 +16,7 @@ uv init --> create a new project
 
 Deep Reinforcement Learning agents trained to play Atari Pacman using **A2C** and **PPO** algorithms with **Stable-Baselines3**.
 
-![Pacman Gameplay](pacman_gameplay.gif)
+![Pacman Gameplay](miguel/pacman/pacman_best_episode.gif)
 
 ---
 
