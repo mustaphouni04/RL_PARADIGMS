@@ -1,3 +1,4 @@
+Authors: Mustapha El Aichouni Jouied, Miguel Arpa Robig
 # RL_PARADIGMS
 
 Create python environment Python 3.11
