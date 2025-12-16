@@ -12,6 +12,11 @@ uv add package
 
 uv init --> create a new project
 
+## Part 2: Pong Tournament
+Deep Reinforcement Learning agents trained to play Atari Pong with **Stable-Baselines3**.
+
+![Pong Gameplay](PongTournamentTest/videos/M20-G00_G00.gif)
+
 ## Part 3: Pacman Reinforcement Learning
 
 Deep Reinforcement Learning agents trained to play Atari Pacman using **A2C** and **PPO** algorithms with **Stable-Baselines3**.
