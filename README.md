@@ -23,6 +23,7 @@ Deep Reinforcement Learning agents trained to play Atari Pacman using **A2C** an
 
 ![Pacman Gameplay](miguel/pacman/pacman_best_episode.gif)
 ![Pacman Gameplay1](miguel/pacman/pacman_gameplaynuevo.gif)
+![Pacman Gameplay2](miguel/pacman/pacman_gameplay1.gif)
 ---
 
 ## ✨ Features
